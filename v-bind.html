@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="ja">
+	<head>
+		<meta charset="utf-8">
+		<title>v-bindサンプル1</title>
+		
+		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+		<script src="https://unpkg.com/vue@3.0.0/dist/vue.global.js"></script>
+		
+	</head>
+	
+	<body>
+		
+		<style>
+			.green{
+				font-size:32pt;
+				font-weight:plain;
+				color:green;
+			}
+			
+			.red{
+				font-size:32pt;
+				font-weight:bold;
+				color:red;
+			}
+		</style>
+		
+		
+		<h1 class="bg-primary text-blue display-3 px-3">Vue3</h1>
+		
+		<div id="app" class="bg-secondary display-4 px-2 container">
+			<p v-bind:class="{red:isRed, green:isGreen}">
+				{{ message }}
+			</p>
+		</div>
+		
+		
+		<script>
+			const appdata = {
+				data() {
+					return {
+						message: null,
+						isRed: true,
+						isGreen: false
+					}
+				},
+				mounted() {
+					this.message = "sample message"
+					setInterval(() => {
+						this.isRed = !this.isRed
+						this.isGreen = !this.isGreen
+					},1000)
+				}
+			}
+			
+			Vue.createApp(appdata).mount('#app')
+		</script>
+	</body>
+</html>
