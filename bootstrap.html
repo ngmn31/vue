@@ -3,18 +3,18 @@
 	<head>
 		<meta charset="utf-8">
 		<title>bootstrapサンプル</title>
-		
+
 		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
 		<script src="https://unpkg.com/vue@3.0.0/dist/vue.global.js"></script>
-		
+
 	</head>
-	
+
 	<body>
 		<h1 class="bg-primary text-blue display-3 px-3">Vue3</h1>
 		<div id="app" class="bg-secondary text-red display-4 px-2 container">
 			<div v-html="message">
 		</div>
-		
+
 		<script>
 			const list = ['one' , 'two' , 'three']
 			const appdata = {
@@ -31,7 +31,7 @@
 					this.message = 'this is sample page'
 				}
 			}
-			
+
 			Vue.createApp(appdata).mount('#app')
 		</script>
 	</body>
