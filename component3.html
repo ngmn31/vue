@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="jp">
+    <head>
+        <meta charset="UTF-8">
+        <title>component</title>
+
+        <style>
+            .demo {
+                font-family: sans-serif;
+                border: 1px solid #77e;
+                border-radius: 3px;
+                padding: 20px 40px;
+                margin-top: 2em;
+                margin-bottom: 30px;
+                user-select: none;
+                overflow-x: auto;
+            }
+        </style>
+    </head>
+
+    <body>
+        <div id="blog-post" class="demo">
+            <blog-post v-for="post in posts" :key="post.id" :title="post.title"></blog-post>
+        </div>
+
+        <script src="https://cdn.jsdelivr.net/npm/vue@3.2.31/dist/vue.global.js"></script>
+        <script>
+            const App = {
+                data() {
+                    return{
+                        posts: [
+                            {id:1,title:"航路"},
+                            {id:2,title:"帰路"},
+                            {id:3,title:"軌跡"}
+                        ]
+                    }
+                }
+            }
+
+            const app = Vue.createApp(App);
+
+            app.component("blog-post",{
+                props:["title"],
+                template:`<h4>{{title}}</h4>`
+            });
+
+            app.mount("#blog-post");
+        </script>
+    </body>
+</html>

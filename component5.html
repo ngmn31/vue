@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="jp">
+    <head>
+        <meta charset="UTF-8">
+        <title>component</title>
+
+        <style>
+            .demo {
+                font-family: sans-serif;
+                border: 1px solid #77e;
+                border-radius: 3px;
+                padding: 20px 40px;
+                margin-top: 2em;
+                margin-bottom: 30px;
+                user-select: none;
+                overflow-x: auto;
+            }
+
+            .alert {
+                padding: 20px 20px;
+                background: #680e04;
+                border: 1px solid #3f944d;
+                color: #ffffff;
+            }
+        </style>
+    </head>
+
+    <body>
+        <div id="slots" class="demo">
+            <alert-box>問題が発生しました</alert-box>
+        </div>
+
+        <script src="https://cdn.jsdelivr.net/npm/vue@3.2.31/dist/vue.global.js"></script>
+        <script>
+            const app = Vue.createApp({});
+
+            app.component('alert-box', {
+                template: `
+                    <div class="alert">
+                        <strong>Error!</strong>
+                        <slot></slot>
+                    </div>
+                `
+            });
+
+            app.mount('#slots');
+        </script>
+    </body>
+</html>

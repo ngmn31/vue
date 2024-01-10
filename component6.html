@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="jp">
+    <head>
+        <meta charset="UTF-8">
+        <title>component</title>
+
+        <style>
+            .demo {
+                font-family: sans-serif;
+                border: 1px solid #77e;
+                border-radius: 3px;
+                padding: 20px 40px;
+                margin-top: 2em;
+                margin-bottom: 30px;
+                user-select: none;
+                overflow-x: auto;
+            }
+
+            .tab-button{
+                padding: 6px 8px;
+                border-top-left-radius: 2px;
+                border-top-right-radius: 2px;
+                border: 1px solid #7ee;
+                cursor: pointer;
+                background: #999;
+                margin-bottom: -1px;
+                margin-right: -1px;
+            }
+
+            .tab-button:hover{
+                background: #777;
+            }
+
+            .tab-button:active{
+                background: #eee;
+            }
+
+            .tab{
+                border: 1px solid #ccc;
+                padding: 10px;
+            }
+        </style>
+    </head>
+
+    <body>
+        <div id="dynamic-component" class="demo">
+            <button
+                v-for="tab in tabs"
+                v-bind:key="tab"
+                v-bind:class="['tab-button',{active:currentTab == tab}]"
+                v-on:click="currentTab = tab"
+            >
+                {{tab}}
+            </button>
+
+            <component v-bind:is="currentTabComponent" class="tab"></component>
+        </div>
+
+        <script src="https://cdn.jsdelivr.net/npm/vue@3.2.31/dist/vue.global.js"></script>
+
+        <script>
+            const app = Vue.createApp({
+                data(){
+                    return{
+                        currentTab: "Home",
+                        tabs:["Home","Posts","Archive","kill"]
+                    };
+                },
+                computed:{
+                    currentTabComponent(){
+                        return "tab-" + this.currentTab.toLowerCase();
+                    }
+                }
+            });
+
+            app.component("tab-home",{
+                template:`<div class="tab">Home いぇぇぇぇぇぃ</div>`
+            });
+            app.component("tab-posts",{
+                template:`<div class="tab">Posts Fooooooooooo</div>`
+            });
+            app.component("tab-archive",{
+                template:`<div class="tab">Archive Nooooooooo</div>`
+            });
+
+            app.mount("#dynamic-component");
+        </script>
+    </body>
+</html>

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="jp">
+    <head>
+        <meta charset="UTF-8">
+        <title>component</title>
+
+        <style>
+            .demo {
+                font-family: sans-serif;
+                border: 1px solid #eee;
+                border-radius: 3px;
+                padding: 20px 40px;
+                margin-top: 2em;
+                margin-bottom: 30px;
+                user-select: none;
+                overflow-x: auto;
+            }
+        </style>
+    </head>
+
+    <body>
+        <div id="blog-post" class="demo">
+            <blog-post title="航路"></blog-post>
+            <blog-post title="帰路"></blog-post>
+            <blog-post title="軌跡"></blog-post>
+        </div>
+
+        <script src="https://cdn.jsdelivr.net/npm/vue@3.2.31/dist/vue.global.js"></script>
+        <script>
+            const app = Vue.createApp({
+                components:{
+                    "blog-post":{
+                        props:["title"],
+                        template:`<h4>{{title}}</h4>`
+                    }
+                }
+            });
+
+            app.mount("#blog-post");
+        </script>
+    </body>
+</html>
